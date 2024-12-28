@@ -1,0 +1,36 @@
+esphome:
+  name: energy-monitor
+  platformio_options:
+    board_build.flash_mode: dio
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+    version: recommended
+    # Custom sdkconfig options
+    sdkconfig_options:
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/mayo/esphome_emu2_meter.git
+    components: [emu2_meter]
+
+emu2_meter:
+
+sensor:
+  - platform: emu2_meter
+    maximum_demand_active_power:
+      name: "Electric Meter Demand"
+    total_active_energy:
+      name: "Electric Meter Total Energy"
+    import_active_energy:
+      name: "Electric Meter Import Energy"
+    export_active_energy:
+      name: "Electric Meter Export Energy"
+    price:
+      name: "Electric Meter Price"
+      unit_of_measurement: CAD/kWh
+      accuracy_decimals: 3
