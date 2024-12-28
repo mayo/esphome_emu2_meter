@@ -115,8 +115,6 @@ static void usb_lib_task(void *arg) {
     }
 }
 
-
-
 static void handle_tag(char *tag, int is_terminating, void *userdata) {
   Emu2Parser *emu2_parser = (Emu2Parser *)userdata;
 //   uint32_t hash = murmur3_32(tag, strlen(tag), 42);
@@ -255,99 +253,15 @@ void Emu2Meter::loop() {
     //     .bParityType = EXAMPLE_PARITY,
     //     .bDataBits = EXAMPLE_DATA_BITS,
     // };
-
-
-
-    // esp_err_t err = mdns_init();
-    // if (err != ESP_OK) {
-    //     ESP_LOGW(TAG, "mDNS init failed: %s", esp_err_to_name(err));
-    //     this->mark_failed();
-    //     return;
-    // }
-
-    // mdns_hostname_set(this->hostname_.c_str());
-    // mdns_instance_name_set(this->hostname_.c_str());
-
-    // for (const auto &service : this->services_) {
-    //     std::vector<mdns_txt_item_t> txt_records;
-    //     for (const auto &record : service.txt_records) {
-    //     mdns_txt_item_t it{};
-    //     // dup strings to ensure the pointer is valid even after the record loop
-    //     it.key = strdup(record.key.c_str());
-    //     it.value = strdup(record.value.c_str());
-    //     txt_records.push_back(it);
-    //     }
-    //     err = mdns_service_add(nullptr, service.service_type.c_str(), service.proto.c_str(), service.port,
-    //                         txt_records.data(), txt_records.size());
-
-    //     // free records
-    //     for (const auto &it : txt_records) {
-    //     delete it.key;    // NOLINT(cppcoreguidelines-owning-memory)
-    //     delete it.value;  // NOLINT(cppcoreguidelines-owning-memory)
-    //     }
-
-    //     if (err != ESP_OK) {
-    //     ESP_LOGW(TAG, "Failed to register mDNS service %s: %s", service.service_type.c_str(), esp_err_to_name(err));
-    //     }
-    // }
 }
 
 void Emu2Meter::on_shutdown() {
-// mdns_free();
-    // delay(40);  // Allow the mdns packets announcing service removal to be sent
 }
 
-
 // void Emu2Meter::update() {
-//   float energy = this->qmp6988_data_.pressure / 100;
-//   float demand = this->qmp6988_data_.temperature;
-
-//   ESP_LOGD(TAG, "Temperature=%.2f°C, Pressure=%.2fhPa", temperature, pressurehectopascals);
-
-//   if (this->total_active_energy_sensor_ != nullptr) {
-//     this->total_active_energy_sensor_->publish_state(temperature);
-//   }
-
-//   if (this->maximum_demand_active_sensor_ != nullptr) {
-//     this->maximum_demand_active_sensor_->publish_state(pressurehectopascals);
-//   }
-
-//   if (this->rssi_sensor_ != nullptr) {
-//     this->rssi_sensor_->publish_state(pressurehectopascals);
-//   }
 // }
 
 void Emu2Meter::dump_config() {
-  // ESP_LOGCONFIG(TAG, "mDNS:");
-  // ESP_LOGCONFIG(TAG, "  Hostname: %s", this->hostname_.c_str());
-  // ESP_LOGV(TAG, "  Services:");
-  // for (const auto &service : this->services_) {
-  //   ESP_LOGV(TAG, "  - %s, %s, %d", service.service_type.c_str(), service.proto.c_str(), service.port);
-  //   for (const auto &record : service.txt_records) {
-  //     ESP_LOGV(TAG, "    TXT: %s = %s", record.key.c_str(), record.value.c_str());
-  //   }
-  // }
-
-  // ESP_LOGCONFIG(TAG, "BMP280:");
-  // LOG_I2C_DEVICE(this);
-  // switch (this->error_code_) {
-  //   case COMMUNICATION_FAILED:
-  //     ESP_LOGE(TAG, "Communication with BMP280 failed!");
-  //     break;
-  //   case WRONG_CHIP_ID:
-  //     ESP_LOGE(TAG, "BMP280 has wrong chip ID! Is it a BME280?");
-  //     break;
-  //   case NONE:
-  //   default:
-  //     break;
-  // }
-  // ESP_LOGCONFIG(TAG, "  IIR Filter: %s", iir_filter_to_str(this->iir_filter_));
-  // LOG_UPDATE_INTERVAL(this);
-
-  // LOG_SENSOR("  ", "Temperature", this->temperature_sensor_);
-  // ESP_LOGCONFIG(TAG, "    Oversampling: %s", oversampling_to_str(this->temperature_oversampling_));
-  // LOG_SENSOR("  ", "Pressure", this->pressure_sensor_);
-  // ESP_LOGCONFIG(TAG, "    Oversampling: %s", oversampling_to_str(this->pressure_oversampling_));
 }
 
 void Emu2Meter::update_active_energy(double import_active_energy, double export_active_energy) {

@@ -32,19 +32,13 @@ CONFIG_SCHEMA = cv.All(
     _remove_id_if_disabled,
 )
 
-
 async def to_code(config):
-
-    # if CORE.using_esp_idf and CORE.data[KEY_CORE][KEY_FRAMEWORK_VERSION] >= cv.Version(
-    #     5, 0, 0
-    # ):
 
     add_idf_component(
         name="usb_host_cdc_acm",
         repo="https://github.com/espressif/esp-usb.git",
         path="host/class/cdc/usb_host_cdc_acm",
     )
-    #version: 2.0.0
 
     cg.add_library(
         name="emu2-data-parser",
